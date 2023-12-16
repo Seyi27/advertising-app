@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Platform.OS == "ios" ? 20 : 0,
   },
   headerText: {
     color: "black",

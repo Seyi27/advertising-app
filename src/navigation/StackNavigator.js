@@ -5,6 +5,7 @@ import Details from "../screens/Details";
 import BottomNavigator from "./BottomNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "../screens/Login";
+import SignUp from "../screens/SignUp";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const StackNavigator = () => {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Sign" component={SignUp} />
         <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="BottomTab" component={BottomNavigator} />
       </Stack.Navigator>
