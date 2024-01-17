@@ -9,73 +9,93 @@ import {
 } from "react-native";
 import React from "react";
 import { Platform } from "react-native";
+import {
+  booksData,
+  clothesData,
+  electronicsData,
+  homeGardenData,
+  sportsOutdoorData,
+} from "../components/data";
 
 const { width, height } = Dimensions.get("screen");
 
-const Categories = () => {
+const Categories = ({ navigation }) => {
   return (
     <>
       <StatusBar
-        backgroundColor="black" // Set the background color
-        barStyle="light-content" // Set text and icon color
+        barStyle="dark-content"
+        backgroundColor={Platform.OS === "ios" ? "transparent" : "white"}
       />
 
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Categories</Text>
-        </View>
-
         <View style={styles.containerBody}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingVertical: 10,
-            }}
-          >
+          {/* Row */}
+          <View style={styles.row}>
+            {/* Electronics */}
             <TouchableOpacity
               style={styles.containerBodyItem}
               activeOpacity={Platform.OS == "ios" ? 0.5 : 0.8}
+              onPress={() =>
+                navigation.navigate("CategoryDetails", {
+                  data: electronicsData,
+                })
+              }
             >
               <Text>Electronics</Text>
             </TouchableOpacity>
 
+            {/* Clothing */}
             <TouchableOpacity
               style={styles.containerBodyItem}
               activeOpacity={Platform.OS == "ios" ? 0.5 : 0.8}
+              onPress={() =>
+                navigation.navigate("CategoryDetails", {
+                  data: clothesData,
+                })
+              }
             >
               <Text>Clothing</Text>
             </TouchableOpacity>
           </View>
 
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingVertical: 10,
-            }}
-          >
+          <View style={styles.row}>
+            {/* Books */}
             <TouchableOpacity
               style={styles.containerBodyItem}
               activeOpacity={Platform.OS == "ios" ? 0.5 : 0.8}
+              onPress={() =>
+                navigation.navigate("CategoryDetails", {
+                  data: booksData,
+                })
+              }
             >
               <Text>Books</Text>
             </TouchableOpacity>
 
+            {/* Home & Garden */}
             <TouchableOpacity
               style={styles.containerBodyItem}
               activeOpacity={Platform.OS == "ios" ? 0.5 : 0.8}
+              onPress={() =>
+                navigation.navigate("CategoryDetails", {
+                  data: homeGardenData,
+                })
+              }
             >
               <Text>Home & Garden</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={{ paddingVertical: 10 }}>
+          <View style={styles.containerTop}>
+            {/* Sports & Outdoors */}
             <TouchableOpacity
               style={styles.containerBodyItemWidth}
               activeOpacity={Platform.OS == "ios" ? 0.5 : 0.8}
+              onPress={() =>
+                navigation.navigate("CategoryDetails", {
+                  data: sportsOutdoorData,
+                })
+              }
             >
               <Text>Sports & Outdoors</Text>
             </TouchableOpacity>
@@ -93,19 +113,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: "white",
-    paddingTop: Platform.OS == "ios" ? 40 : 10,
+    paddingTop: Platform.OS == "ios" ? 10 : 10,
   },
-  header: {
-    height: 60,
-    width: "100%",
+  row: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    paddingTop: Platform.OS == "ios" ? 20 : 0,
-  },
-  headerText: {
-    color: "black",
-    fontSize: 20,
-    fontWeight: "600",
+    justifyContent: "space-between",
+    paddingVertical: 10,
   },
   containerBody: {
     width: "100%",
@@ -128,6 +142,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
       },
     }),
+  },
+  containerTop: {
+    paddingVertical: 10,
   },
   containerBodyItemWidth: {
     width: "100%",

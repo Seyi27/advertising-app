@@ -16,19 +16,20 @@ const Home = () => {
   return (
     <>
       <StatusBar
-        backgroundColor="black" // Set the background color
-        barStyle="light-content" // Set text and icon color
+        barStyle="dark-content"
+        backgroundColor={Platform.OS === "ios" ? "transparent" : "white"}
       />
+
       <ScrollView
-        contentContainerStyle={{ paddingBottom: 60 }}
+        contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
       >
         <SafeAreaView style={styles.container}>
           {data.map((item, index) => (
             <>
-              <Posts data={item} />
+              <Posts data={item} source={'home'} />
               {index !== data.length - 1 ? (
-                <Divider style={{ marginVertical: 20 }} />
+                <Divider style={styles.divider} />
               ) : null}
             </>
           ))}
@@ -42,7 +43,15 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
     flex: 1,
+    backgroundColor: "white",
   },
+  contentContainerStyle: {
+    paddingBottom: 60,
+    paddingTop: 20,
+    backgroundColor: "white",
+  },
+  divider:{
+    marginVertical: 20
+  }
 });

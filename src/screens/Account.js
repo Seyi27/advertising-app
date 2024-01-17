@@ -8,17 +8,17 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import React from "react";
-import { Divider } from "@rneui/base";
 import { useState } from "react";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { AntDesign } from "@expo/vector-icons";
 
-const Account = () => {
+
+const { width, height } = Dimensions.get("screen");
+
+const Account = ({ navigation }) => {
+  const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <View style={styles.container}>
@@ -26,78 +26,50 @@ const Account = () => {
         <View style={styles.avatarContainer}>
           <Image
             src="https://th.bing.com/th/id/OIP.gQUCjm9cRbC8JRMSMLMVXQHaLH?w=139&h=209&c=7&r=0&o=5&pid=1.7"
-            style={{
-              width: 100,
-              height: 100,
-              resizeMode: "cover",
-              borderRadius: 50,
-            }}
+            style={styles.avatarImage}
           />
           <Text style={styles.avatarText}>John Doe</Text>
         </View>
 
-        <Divider style={{ paddingVertical: 10 }} />
-
         <View>
+          {/* Username */}
+          <View style={styles.usernameInputTop}>
+            <Text style={styles.inputText}>Username</Text>
+            <TextInput
+              placeholder="Username"
+              value={username}
+              onChange={(text) => setUsername(text)}
+              style={styles.input}
+            />
+          </View>
+
           {/* Bio */}
-          <View style={{ paddingVertical: 10 }}>
-            <Text>Bio</Text>
+          <View style={styles.bioInputTop}>
+            <Text style={styles.inputText}>Bio</Text>
             <TextInput
               placeholder="Bio"
               value={bio}
               onChange={(text) => setBio(text)}
-              style={{
-                borderWidth: 1,
-                height: 40,
-                borderRadius: 5,
-                marginTop: 5,
-                padding: 10,
-                borderColor: "gray",
-              }}
-            />
-          </View>
-
-          <Divider style={{ paddingVertical: 10 }} />
-
-          {/* Change Password */}
-          <View style={{ paddingVertical: 10 }}>
-            <Text>Change Password</Text>
-            <TextInput
-              placeholder="Password"
-              value={password}
-              onChange={(text) => setPassword(text)}
-              style={{
-                borderWidth: 1,
-                height: 40,
-                borderRadius: 5,
-                marginTop: 5,
-                padding: 10,
-                borderColor: "gray",
-              }}
-            />
-          </View>
-
-          {/* Confirm Password */}
-          <View style={{ paddingVertical: 5 }}>
-            <TextInput
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(text) => setConfirmPassword(text)}
-              style={{
-                borderWidth: 1,
-                height: 40,
-                borderRadius: 5,
-                padding: 10,
-                borderColor: "gray",
-              }}
+              style={styles.input}
             />
           </View>
         </View>
-      </ScrollView>
 
-      <TouchableOpacity style={styles.floatButton}>
-        <AntDesign name="plus" size={24} color="white" />
-      </TouchableOpacity>
+        {/* Edit Profile */}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("EditDetails")}
+          >
+            <Text style={styles.buttonText}>Edit Profile</Text>
+          </TouchableOpacity>
+
+        {/* Log out */}
+          <TouchableOpacity style={styles.buttonLogOut}>
+            <Text style={styles.buttonLogOutText}>Log out</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -107,29 +79,63 @@ export default Account;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
     paddingHorizontal: 20,
     paddingTop: Platform.OS == "ios" ? 40 : 10,
     position: "relative",
   },
   avatarContainer: {
     alignItems: "center",
-    paddingTop: 30,
   },
   avatarText: {
     marginTop: 10,
     fontSize: 18,
     fontWeight: "500",
   },
-  floatButton: {
-    height: 60,
-    width: 60,
-    backgroundColor: "black",
+  avatarImage: {
+    width: 100,
+    height: 100,
+    resizeMode: "cover",
+    borderRadius: 50,
+  },
+  usernameInputTop: {
+    paddingVertical: 10,
+  },
+  bioInputTop: {
+    paddingVertical: 5,
+  },
+  inputText: {
+    fontWeight: "700",
+  },
+  input: {
+    borderWidth: 1,
+    height: 50,
+    borderRadius: 7,
+    marginTop: 5,
+    padding: 10,
+    borderColor: "gray",
+    backgroundColor: "#FAFAFF",
+  },
+  buttonContainer: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 50,
-    position: "absolute",
-    bottom: 20,
-    right: 20,
+    paddingTop: 30,
+  },
+  button: {
+    height: 43,
+    width: width / 1.5,
+    backgroundColor: "#455957",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "500",
+  },
+  buttonLogOutText: {
+    color: "red",
+    fontWeight: "500",
   },
 });
