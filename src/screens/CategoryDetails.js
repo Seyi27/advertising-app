@@ -48,12 +48,12 @@ const CategoryDetails = ({ navigation, route }) => {
         >
           <View style={styles.container}>
             {data.map((item, index) => (
-              <>
+              <React.Fragment key={item.id}>
                 <Posts data={item} source={"category"} />
                 {index !== data.length - 1 ? (
                   <Divider style={{ marginVertical: 20 }} />
                 ) : null}
-              </>
+              </React.Fragment>
             ))}
           </View>
         </ScrollView>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingBottom: 60,
-    paddingTop: 20,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight: 10,
     backgroundColor: "white",
   },
 });

@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  StatusBar
 } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: 20,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight: 20,
     paddingHorizontal: 20,
   },
   avatarContainer: {

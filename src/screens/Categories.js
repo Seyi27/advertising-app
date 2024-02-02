@@ -16,6 +16,9 @@ import {
   homeGardenData,
   sportsOutdoorData,
 } from "../components/data";
+import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -41,6 +44,7 @@ const Categories = ({ navigation }) => {
                 })
               }
             >
+              <FontAwesome name="tv" size={24} color="black" />
               <Text>Electronics</Text>
             </TouchableOpacity>
 
@@ -54,6 +58,7 @@ const Categories = ({ navigation }) => {
                 })
               }
             >
+              <Ionicons name="shirt-outline" size={24} color="black" />
               <Text>Clothing</Text>
             </TouchableOpacity>
           </View>
@@ -69,6 +74,7 @@ const Categories = ({ navigation }) => {
                 })
               }
             >
+              <FontAwesome name="book" size={24} color="black" />
               <Text>Books</Text>
             </TouchableOpacity>
 
@@ -82,6 +88,7 @@ const Categories = ({ navigation }) => {
                 })
               }
             >
+<MaterialCommunityIcons name="sofa" size={24} color="black" />
               <Text>Home & Garden</Text>
             </TouchableOpacity>
           </View>
@@ -97,6 +104,7 @@ const Categories = ({ navigation }) => {
                 })
               }
             >
+              <Ionicons name="football" size={24} color="black" />
               <Text>Sports & Outdoors</Text>
             </TouchableOpacity>
           </View>
@@ -113,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: "white",
-    paddingTop: Platform.OS == "ios" ? 10 : 10,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight: 10,
   },
   row: {
     flexDirection: "row",
@@ -127,6 +135,7 @@ const styles = StyleSheet.create({
   containerBodyItem: {
     width: width / 2.3,
     height: height / 12,
+    gap:5,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 6,

@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Dimensions,
+  StatusBar
 } from "react-native";
 import React from "react";
 import { useState } from "react";
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingHorizontal: 20,
-    paddingTop: Platform.OS == "ios" ? 40 : 10,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight: 40,
     position: "relative",
   },
   avatarContainer: {

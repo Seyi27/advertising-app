@@ -26,12 +26,12 @@ const Home = () => {
       >
         <SafeAreaView style={styles.container}>
           {data.map((item, index) => (
-            <>
-              <Posts data={item} source={'home'} />
+            <React.Fragment key={item.id}>
+              <Posts data={item} source={'home'}  />
               {index !== data.length - 1 ? (
                 <Divider style={styles.divider} />
               ) : null}
-            </>
+            </React.Fragment>
           ))}
         </SafeAreaView>
       </ScrollView>
